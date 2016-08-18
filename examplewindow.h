@@ -2,12 +2,15 @@
 #define EXAMPLEWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidget>
 #include <QMessageBox>
 #include <QTextCodec>
 
 #include <FlickableList/flickablelist.h>
 
-class ExampleWindow: public QMainWindow
+typedef QMainWindow QExampleWidget;
+
+class ExampleWindow: public QExampleWidget
 {
     Q_OBJECT
 

@@ -25,7 +25,7 @@
 
 #include <QtCore>
 #include <QtGui>
-
+#include <QCoreApplication>
 class FlickableTicker: QObject
 {
 public:
@@ -172,8 +172,8 @@ void Flickable::handleMouseRelease(QMouseEvent *event)
             QMouseEvent *event2 = new QMouseEvent(*event);
             d->ignoreList << event1;
             d->ignoreList << event2;
-            QApplication::postEvent(d->target, event1);
-            QApplication::postEvent(d->target, event2);
+            QCoreApplication::postEvent((QObject *)d->target, event1);
+            QCoreApplication::postEvent((QObject *)d->target, event2);
         }
         break;
 

@@ -1,19 +1,24 @@
 #include "examplewindow.h"
-
-ExampleWindow::ExampleWindow(QWidget *parent): QMainWindow(parent)
+#include <QLabel>
+#include <QDebug>
+ExampleWindow::ExampleWindow(QWidget *parent): QExampleWidget(parent)
 {
+    resize(200, 600);
     //for Arabic text support
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
 
     FlickableList *fList = new FlickableList(true, this);
-
+    //FlickableList *fList = new FlickableList(false, this);
+    QString numStr;
     for(int i = 0; i < 100; i++)
     {
-        fList->addItem("√Ê»Ê‰ Ê", QPixmap(":/ubuntu.png"));
+        numStr.sprintf("%04i", i);
+        fList->addItem(numStr + ":", QPixmap(":/ubuntu.png"));
+        //fList->addItem(numStr + ":");
     }
 
-    fList->setBackgroundColor(QColor(255,255,255));
-    fList->setSelectedItemColor(QColor(0,0,0));
+    fList->setBackgroundColor(QColor(0,128,0));
+    fList->setSelectedItemColor(QColor(255,0,0));
 
     connect(fList, SIGNAL(itemSelected(int)), this, SLOT(dummySlot(int)));
     this->setCentralWidget(fList);
@@ -22,5 +27,6 @@ ExampleWindow::ExampleWindow(QWidget *parent): QMainWindow(parent)
 //just a dummy slot to prove the concept
 void ExampleWindow::dummySlot(int rowNumber)
 {
-    QMessageBox::information(this, "", "·ﬁœ «Œ —  «·’› —ﬁ„: "+ QString::number(rowNumber));
+    qDebug() << __func__ << ":" << QString::number(rowNumber);
+    //QMessageBox::information(this, "", "XX123: "+ QString::number(rowNumber));
 }
