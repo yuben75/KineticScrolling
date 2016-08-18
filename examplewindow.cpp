@@ -3,9 +3,8 @@
 #include <QDebug>
 ExampleWindow::ExampleWindow(QWidget *parent): QExampleParent(parent)
 {
-    resize(200, 600);
+    resize(300, 480);
     //for Arabic text support
-    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
 
     FlickableList *fList = new FlickableList(true, this);
     //FlickableList *fList = new FlickableList(false, this);
@@ -21,7 +20,7 @@ ExampleWindow::ExampleWindow(QWidget *parent): QExampleParent(parent)
     fList->setSelectedItemColor(QColor(255,0,0));
 
     connect(fList, SIGNAL(itemSelected(int)), this, SLOT(dummySlot(int)));
-    this->setCentralWidget(fList);
+    //this->setCentralWidget(fList);
 }
 
 //just a dummy slot to prove the concept

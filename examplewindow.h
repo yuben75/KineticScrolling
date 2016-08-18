@@ -9,7 +9,7 @@
 
 #include <FlickableList/flickablelist.h>
 
-typedef QMainWindow QExampleParent;
+typedef QWidget QExampleParent;
 
 class ExampleWindow: public QExampleParent
 {
