@@ -4,7 +4,7 @@
 FlickableList::FlickableList(bool withIcons, QWidget *parent)
 {
     //for Arabic text support
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
 
     c_withIcons = withIcons;
 
