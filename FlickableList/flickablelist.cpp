@@ -1,10 +1,12 @@
 #include "flickablelist.h"
 
 
-FlickableList::FlickableList(bool withIcons, QWidget *parent)
+FlickableList::FlickableList(bool withIcons, QWidget *parent) : QWidget(parent)
 {
     //for Arabic text support
     //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
+    QSize size = parent->size();
+    resize(size.width(), size.height());
 
     c_withIcons = withIcons;
 

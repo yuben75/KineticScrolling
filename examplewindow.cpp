@@ -1,7 +1,7 @@
 #include "examplewindow.h"
 #include <QLabel>
 #include <QDebug>
-ExampleWindow::ExampleWindow(QWidget *parent): QExampleWidget(parent)
+ExampleWindow::ExampleWindow(QWidget *parent): QExampleParent(parent)
 {
     resize(200, 600);
     //for Arabic text support

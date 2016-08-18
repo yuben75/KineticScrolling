@@ -9,6 +9,8 @@
 #include <QTextCodec>
 #include <QWidget>
 
+
+
 class FlickableList : public QWidget, public Flickable
 {
     Q_OBJECT
