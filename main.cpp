@@ -14,10 +14,8 @@ int main(int argc, char *argv[])
 #else
     ExampleWindow *w = new ExampleWindow;
     w->show();
+    w->setWindowIcon(QPixmap(":/ubuntu.png"));
 #endif
-
-
-
 
     return a.exec();
 }

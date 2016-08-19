@@ -8,14 +8,14 @@ ExampleWindow::ExampleWindow(QWidget *parent): QExampleParent(parent)
 
     resize(300, 500);
     //setGeometry(100, 20, this->width(), this->height());
-    fList = new FlickableList(true, this);
 
+    fList = new FlickableList(true, this);
     //FlickableList *fList = new FlickableList(false, this);
     QString numStr;
     for(int i = 0; i < 50; i++)
     {
         numStr.sprintf("%04i", i);
-        fList->addItem(numStr + ":", QPixmap(":/ubuntu.png"));
+        fList->addItem(numStr + ":   ------------", QPixmap(":/ubuntu.png"));
         //fList->addItem(numStr + ":");
     }
 
