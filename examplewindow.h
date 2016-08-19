@@ -17,9 +17,14 @@ class ExampleWindow: public QExampleParent
 
 public:
     ExampleWindow(QWidget* parent = 0);
+    ~ExampleWindow();
+private:
+    FlickableList *fList;
+
 
 private slots:
     void dummySlot(int rowNumber);
+    void dobuleClickSlot(int rowNumber);
 };
 
 #endif // EXAMPLEWINDOW_H

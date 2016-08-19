@@ -3,11 +3,11 @@
 
 FlickableList::FlickableList(bool withIcons, QWidget *parent) : QWidget(parent)
 {
-    //for Arabic text support
-    //QTextCodec::setCodecForCStrings(QTextCodec::codecForName("CP1256"));
+#if 0
     QSize size = parent->size();
-    resize(size.width(), size.height());
-
+    move(0, 30);
+    resize(size.width(), size.height() + 30);
+#endif
     c_withIcons = withIcons;
 
     //============= Setting Some Variables =================
@@ -25,6 +25,8 @@ FlickableList::FlickableList(bool withIcons, QWidget *parent) : QWidget(parent)
     setMouseTracking(true);
     Flickable::setAcceptMouseClick(this);
     //=============================================================
+
+
 }
 
 void FlickableList::addItem(QString itemString)
@@ -52,21 +54,24 @@ void FlickableList::setSelectedItemColor(QColor selectedItemColor)
 
     //======================Reimplement from Flickable===============
     // reimplement from Flickable
-QPoint FlickableList::scrollOffset() const {
+QPoint FlickableList::scrollOffset() const
+{
         return QPoint(0, m_offset);
-    }
+}
 
     // reimplement from Flickable
-void FlickableList::setScrollOffset(const QPoint &offset) {
+void FlickableList::setScrollOffset(const QPoint &offset)
+{
         int yy = offset.y();
         if (yy != m_offset) {
             m_offset = qBound(0, yy, m_height * c_itemsList.count() /*list lenght*/- height());
             update();
         }
-    }
+}
 
     //=================================================================
-void FlickableList::paintEvent(QPaintEvent *event) {
+void FlickableList::paintEvent(QPaintEvent *event)
+{
         QPainter p(this);
         p.fillRect(event->rect(), c_backgroundColor);//background color
         int start = m_offset / m_height;
@@ -109,9 +114,10 @@ void FlickableList::paintEvent(QPaintEvent *event) {
             }
         }
         p.end();
-    }
+}
 
-void FlickableList::keyReleaseEvent(QKeyEvent *event) {
+void FlickableList::keyReleaseEvent(QKeyEvent *event)
+{
         if (event->key() == Qt::Key_Down) {
             m_offset += 20;
             event->accept();
@@ -124,9 +130,10 @@ void FlickableList::keyReleaseEvent(QKeyEvent *event) {
             update();
             return;
         }
-    }
+}
 
-void FlickableList::mousePressEvent(QMouseEvent *event) {
+void FlickableList::mousePressEvent(QMouseEvent *event)
+{
         Flickable::handleMousePress(event);
         if (event->isAccepted())
             return;
@@ -141,13 +148,15 @@ void FlickableList::mousePressEvent(QMouseEvent *event) {
             }
             event->accept();
         }
-    }
+}
 
-void FlickableList::mouseMoveEvent(QMouseEvent *event) {
+void FlickableList::mouseMoveEvent(QMouseEvent *event)
+{
         Flickable::handleMouseMove(event);
-    }
+}
 
-void FlickableList::mouseReleaseEvent(QMouseEvent *event) {
+void FlickableList::mouseReleaseEvent(QMouseEvent *event)
+{
         Flickable::handleMouseRelease(event);
         if (event->isAccepted())
             return;
@@ -159,17 +168,18 @@ void FlickableList::mouseReleaseEvent(QMouseEvent *event) {
             event->accept();
             update();
         }
-    }
+}
 
 //if an item is selected twice, a signal is emitted with row number
 void FlickableList::checkClickedItem(int row)
 {
     if(row == lastClickedItem)
     {
-        emit itemSelected(row);
+        emit itemDobuleClick(row);
     }
     else
     {
+        emit itemSelected(row);
         lastClickedItem = row;
     }
 }

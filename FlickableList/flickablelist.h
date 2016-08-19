@@ -47,6 +47,7 @@ private:
     QColor c_selectedItemColor;
 
 signals:
+    void itemDobuleClick(int row);
     void itemSelected(int row);
 };
 
